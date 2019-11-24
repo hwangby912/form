@@ -1,0 +1,20 @@
+ul.home-link-wrapper {
+  list-style-type: none;
+  margin: 10%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+}
+
+.home-link {
+  color: black;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+ul > li > span {
+  color: blue;
+  display: block;
+  font-size: 0.75em;
+  margin-top: 20px;
+}
