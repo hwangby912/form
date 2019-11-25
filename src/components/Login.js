@@ -74,7 +74,7 @@ export default function Login({
             className="form-control"
             id="password"
             name="password"
-            placeholder="Password"
+            placeholder="Enter Password"
           />
         </div>
         <button type="submit" className="btn btn-primary">

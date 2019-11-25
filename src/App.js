@@ -17,6 +17,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
   const [ticket, setTicket] = useState(0);
   const [name, setName] = useState("");
   const [company_no, setCompany_no] = useState("");
@@ -31,6 +32,8 @@ function App() {
     setIsAdmin,
     setId,
     id,
+    password,
+    setPassword,
     ticket,
     setTicket,
     name,
@@ -54,10 +57,7 @@ function App() {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Switch>
-              <Route
-                path="/main"
-                render={props => <Main {...props} {...auth} />}
-              />
+              <Route exact path="/" component={Main} />
               {/* <Route exact path="/" component={Main} /> */}
               <Route
                 path="/login"

@@ -18,3 +18,8 @@ ul > li > span {
   font-size: 0.75em;
   margin-top: 20px;
 }
+
+.logo-img {
+  width: 340px;
+  height: 220px;
+}

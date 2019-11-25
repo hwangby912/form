@@ -7,6 +7,8 @@ import { baseURL } from "../common/config";
 export default function Join({
   id,
   setId,
+  password,
+  setPassword,
   name,
   setName,
   company_no,
@@ -19,7 +21,6 @@ export default function Join({
   setPhonenumber
 }) {
   // const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
   // const [name, setName] = useState("");
   // const [company_no, setCompany_no] = useState("");
   // const [company_name, setCompany_name] = useState("");
@@ -173,12 +174,13 @@ export default function Join({
           />
         </div>
 
-        <button type="submit" className="btn btn-primary btn-block">
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="btn btn-primary"
+        >
           Submit
         </button>
-        <p className="forgot-password text-right">
-          Already registered <a href="/login">sign in?</a>
-        </p>
       </form>
     </>
   );

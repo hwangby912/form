@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Tabs } from "@yazanaabed/react-tabs";
 import axios from "axios";
@@ -14,9 +14,28 @@ export default function Board(props) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [advertiseRegister, setAdvertiseRegister] = useState(false);
+  const [data, setData] = useState();
+  const missionView = async () => {
+    const { data } = await axios.get(
+      `${baseURL}/advertise/mission_check?id=${props.id}`
+    );
+    console.log(data);
+    if (!data) {
+      console.log("data가 없습니다. ");
+    }
+    setData(data);
+    // req.query.id
+    // return #, status, title, request-day, totalNumber, startDay, endDay, management
+  };
+
+  useEffect(() => {
+    missionView();
+  }, []);
+
   const handleSubmit = async e => {
     e.preventDefault();
     const { data } = await axios.post(`${baseURL}/advertise/mission`, {
+      id: props.id,
       title,
       totalNumber,
       content,
@@ -24,6 +43,7 @@ export default function Board(props) {
       startDate,
       endDate
     });
+    console.log(data);
     if (data.result) {
       console.log(data.result);
       setAdvertiseRegister(true);
@@ -34,10 +54,11 @@ export default function Board(props) {
 
   return (
     <>
-      {advertiseRegister && <Redirect to="/board" />}
-      <h1>{props.id}님의 광고 관리 Page입니다. </h1>
+      <h1>{props.id}님의 광고 관리 / 등록 화면입니다. </h1>
       <Tabs activeTab={{ id: "tab1" }}>
         <Tabs.Tab id="tab1" title="광고 관리">
+          {/* {missionView} */}
+
           <table className="table table-hover">
             <thead>
               <tr>
@@ -48,8 +69,8 @@ export default function Board(props) {
                 <th scope="col">총원</th>
                 <th scope="col">광고시작일</th>
                 <th scope="col">광고마감일</th>
-                <th scope="col">관리</th>
               </tr>
+              {/* data handling */}
               <tr>
                 <th scope="col">11111111</th>
                 <th scope="col">22222222</th>
@@ -58,12 +79,12 @@ export default function Board(props) {
                 <th scope="col">55555555</th>
                 <th scope="col">66666666</th>
                 <th scope="col">77777777</th>
-                <th scope="col">88888888</th>
               </tr>
             </thead>
           </table>
         </Tabs.Tab>
         <Tabs.Tab id="tab2" title="광고 등록">
+          {/* {advertiseRegister && <Redirect to="/board" />} */}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="title">Title</label>
@@ -143,7 +164,11 @@ export default function Board(props) {
                 }}
               />
             </div>
-            <button type="submit" className="btn btn-primary btn-block">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="btn btn-primary"
+            >
               Submit
             </button>
           </form>
