@@ -17,17 +17,14 @@ export default function Board(props) {
   const [data, setData] = useState();
   const missionData = async () => {
     const { data } = await axios.get(
-      `${baseURL}/advertise/mission_check?id=${props.id}`
+      `${baseURL}/advertise/mission_check?id=${props.myStorage.getItem("id")}`
     );
     setData(data);
     console.log("data.advertises", data.advertises);
     if (!data) {
       console.log("data가 없습니다. ");
     }
-    // req.query.id
-    // return #, status, title, request-day, totalNumber, startDay, endDay, management
   };
-  console.log(props.id);
 
   const missionView = () => {
     if (data) {
@@ -49,7 +46,7 @@ export default function Board(props) {
             </th>
             <th scope="col">
               {item.status === "waiting" ? (
-                <button className="btn-default">{item.status}</button>
+                <button className="btn-primary">{item.status}</button>
               ) : null}
               {item.status === "success" ? (
                 <button className="btn-success">{item.status}</button>
@@ -58,9 +55,6 @@ export default function Board(props) {
                 <button className="btn-danger">{item.status}</button>
               ) : null}
             </th>
-            {/* <th scope="col" className="status">
-              {item.status}
-            </th> */}
             <th scope="col" className="board-title">
               {item.title}
             </th>
@@ -79,38 +73,6 @@ export default function Board(props) {
           </tr>
         );
       });
-      // for (let i = 0; i < data.advertises.length; i++) {
-      // const requestedDate = data.advertises[i].date;
-      // const dateSplit = requestedDate.split("T");
-      // const startDate = data.advertises[i].startDate.substring(
-      //   0,
-      //   data.advertises[i].startDate.length - 8
-      // );
-      // const endDate = data.advertises[i].endDate.substring(
-      //   0,
-      //   data.advertises[i].endDate.length - 8
-      // );
-      // const startDateSplit = startDate.split("T");
-      // const endDateSplit = endDate.split("T");
-
-      // return (
-      //   <>
-      //     <tr>
-      //       <th scope="col">{i + 1}</th>
-      //       <th scope="col">{data.advertises[i].status}</th>
-      //       <th scope="col">{data.advertises[i].title}</th>
-      //       <th scope="col">{dateSplit[0]}</th>
-      //       <th scope="col">{data.advertises[i].totalNumber}</th>
-      //       <th scope="col">
-      //         {startDateSplit[0]}-{startDateSplit[1]}
-      //       </th>
-      //       <th scope="col">
-      //         {endDateSplit[0]}-{endDateSplit[1]}
-      //       </th>
-      //     </tr>
-      //   </>
-      // );
-      // }
     }
   };
 
@@ -121,7 +83,7 @@ export default function Board(props) {
   const handleSubmit = async e => {
     e.preventDefault();
     const { data } = await axios.post(`${baseURL}/advertise/mission`, {
-      id: props.id,
+      id: props.myStorage.getItem("id"),
       title,
       totalNumber,
       content,
@@ -140,7 +102,7 @@ export default function Board(props) {
 
   return (
     <>
-      <h1>{props.id}님의 광고 관리 / 등록 화면입니다. </h1>
+      <h1>{props.myStorage.getItem("id")}님의 광고 관리 / 등록 화면입니다. </h1>
       <Tabs activeTab={{ id: "tab1" }}>
         <Tabs.Tab id="tab1" title="광고 관리">
           {/* {missionData()} */}

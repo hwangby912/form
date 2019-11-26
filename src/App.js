@@ -26,6 +26,7 @@ function App() {
   const [company_location, setCompany_location] = useState("");
   const [phonenumber, setPhonenumber] = useState("");
   const [passwordSame, setPasswordSame] = useState(false);
+  let myStorage = localStorage;
   const auth = {
     isLoggedIn,
     isAdmin,
@@ -48,18 +49,9 @@ function App() {
     phonenumber,
     setPhonenumber,
     passwordSame,
-    setPasswordSame
+    setPasswordSame,
+    myStorage
   };
-  // useEffect(() => {
-  //   setIsLoggedIn(document.cookie.includes("Authorization"));
-  //   // Header Payload Signature
-  //   if (document.cookie.includes("Authorization")) {
-  //     const jwt = getCookie("Authorization").split(" ")[1];
-  //     const payload = jwt.split(".")[1];
-  //     const { admin } = JSON.parse(atob(payload));
-  //     setIsAdmin(admin);
-  //   }
-  // }, []);
   return (
     <BrowserRouter>
       <div className="App">
@@ -69,7 +61,6 @@ function App() {
           <div className="auth-inner">
             <Switch>
               <Route exact path="/" component={Main} />
-              {/* <Route exact path="/" component={Main} /> */}
               <Route
                 path="/login"
                 render={props => <Login {...props} {...auth} />}
@@ -78,27 +69,22 @@ function App() {
                 path="/signup"
                 render={props => <Join {...props} {...auth} />}
               />
-              {/* <Route path="/signup" component={Join} /> */}
               <Route
                 path="/home"
                 render={props => <Home {...props} {...auth} />}
               />
-              {/* <Route path="/home" component={Home} /> */}
               <Route
                 path="/user"
                 render={props => <User {...props} {...auth} />}
               />
-              {/* <Route path="/user" component={User} /> */}
               <Route
                 path="/board"
                 render={props => <Board {...props} {...auth} />}
               />
-              {/* <Route path="/board" component={Board} /> */}
               <Route
                 path="/ticket"
                 render={props => <Ticket {...props} {...auth} />}
               />
-              {/* <Route path="/ticket" component={Ticket} /> */}
             </Switch>
           </div>
         </div>

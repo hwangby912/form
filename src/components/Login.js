@@ -13,7 +13,8 @@ export default function Login({
   setCompany_no,
   setCompany_name,
   setCompany_location,
-  setPhonenumber
+  setPhonenumber,
+  myStorage
 }) {
   const [loginState, setLoginState] = useState("init");
   // const [ticket, setTicket] = useState(0)
@@ -42,6 +43,8 @@ export default function Login({
       setIsAdmin(data.admin);
       setIsLoggedIn(true);
       setLoginState("success");
+      myStorage.setItem("id", data.id);
+      myStorage.setItem("ticket", data.ticket);
     }
   };
   return (

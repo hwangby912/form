@@ -4,8 +4,9 @@ import Tickets1 from "../css/img/Tickets1.png";
 import "../css/Ticket.css";
 
 export default function Ticket(props) {
-  const id = props.id;
+  const id = props.myStorage.getItem("id");
   const ticket = props.ticket;
+
   // ticket state 추가하기
   const ticketAdd1 = () => {
     props.setTicket(ticket + 1);

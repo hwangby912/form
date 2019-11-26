@@ -21,13 +21,15 @@ export default function User({
   company_location,
   setCompany_location,
   phonenumber,
-  setPhonenumber
+  setPhonenumber,
+  myStorage
 }) {
   const [newPassword, setNewPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [modified, setModified] = useState(false);
+
   const handleSubmit = async e => {
-    const { data } = await axios.patch(`${baseURL}/stamp/modify`, {
+    const { data } = await axios.post(`${baseURL}/stamp/user`, {
       password: newPassword,
       company_name,
       company_location,
@@ -47,7 +49,7 @@ export default function User({
     e.preventDefault();
 
     const { data } = await axios.post(`${baseURL}/stamp/login`, {
-      id,
+      id: myStorage.getItem("id"),
       password: password2
     });
     if (!data.result) {

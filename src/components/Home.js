@@ -8,7 +8,7 @@ import ticketLogo from "../css/img/Ticket-logo.png";
 
 export default function Home(props) {
   props.setPasswordSame(false);
-  const id = props.id;
+  const id = props.myStorage.getItem("id");
   const ticket = props.ticket;
   return (
     <div>
