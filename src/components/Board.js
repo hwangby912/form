@@ -15,21 +15,107 @@ export default function Board(props) {
   const [endDate, setEndDate] = useState(new Date());
   const [advertiseRegister, setAdvertiseRegister] = useState(false);
   const [data, setData] = useState();
-  const missionView = async () => {
+  const missionData = async () => {
     const { data } = await axios.get(
       `${baseURL}/advertise/mission_check?id=${props.id}`
     );
-    console.log(data);
+    setData(data);
+    console.log("data.advertises", data.advertises);
     if (!data) {
       console.log("data가 없습니다. ");
     }
-    setData(data);
     // req.query.id
     // return #, status, title, request-day, totalNumber, startDay, endDay, management
   };
+  console.log(props.id);
+
+  const missionView = () => {
+    if (data) {
+      return data.advertises.map((item, idx) => {
+        const requestedDate = item.date;
+        const dateSplit = requestedDate.split("T");
+        const startDate = item.startDate.substring(
+          0,
+          item.startDate.length - 8
+        );
+        const endDate = item.endDate.substring(0, item.endDate.length - 8);
+        const startDateSplit = startDate.split("T");
+        const endDateSplit = endDate.split("T");
+
+        return (
+          <tr>
+            <th scope="col" className="index">
+              {idx + 1}
+            </th>
+            <th scope="col">
+              {item.status === "waiting" ? (
+                <button className="btn-default">{item.status}</button>
+              ) : null}
+              {item.status === "success" ? (
+                <button className="btn-success">{item.status}</button>
+              ) : null}
+              {item.status === "denied" ? (
+                <button className="btn-danger">{item.status}</button>
+              ) : null}
+            </th>
+            {/* <th scope="col" className="status">
+              {item.status}
+            </th> */}
+            <th scope="col" className="board-title">
+              {item.title}
+            </th>
+            <th scope="col" className="request-day">
+              {dateSplit[0]}
+            </th>
+            <th scope="col" className="total-number">
+              {item.totalNumber}
+            </th>
+            <th scope="col" className="start-day">
+              {startDateSplit[0]}-{startDateSplit[1]}
+            </th>
+            <th scope="col" className="end-day">
+              {endDateSplit[0]}-{endDateSplit[1]}
+            </th>
+          </tr>
+        );
+      });
+      // for (let i = 0; i < data.advertises.length; i++) {
+      // const requestedDate = data.advertises[i].date;
+      // const dateSplit = requestedDate.split("T");
+      // const startDate = data.advertises[i].startDate.substring(
+      //   0,
+      //   data.advertises[i].startDate.length - 8
+      // );
+      // const endDate = data.advertises[i].endDate.substring(
+      //   0,
+      //   data.advertises[i].endDate.length - 8
+      // );
+      // const startDateSplit = startDate.split("T");
+      // const endDateSplit = endDate.split("T");
+
+      // return (
+      //   <>
+      //     <tr>
+      //       <th scope="col">{i + 1}</th>
+      //       <th scope="col">{data.advertises[i].status}</th>
+      //       <th scope="col">{data.advertises[i].title}</th>
+      //       <th scope="col">{dateSplit[0]}</th>
+      //       <th scope="col">{data.advertises[i].totalNumber}</th>
+      //       <th scope="col">
+      //         {startDateSplit[0]}-{startDateSplit[1]}
+      //       </th>
+      //       <th scope="col">
+      //         {endDateSplit[0]}-{endDateSplit[1]}
+      //       </th>
+      //     </tr>
+      //   </>
+      // );
+      // }
+    }
+  };
 
   useEffect(() => {
-    missionView();
+    missionData();
   }, []);
 
   const handleSubmit = async e => {
@@ -57,7 +143,7 @@ export default function Board(props) {
       <h1>{props.id}님의 광고 관리 / 등록 화면입니다. </h1>
       <Tabs activeTab={{ id: "tab1" }}>
         <Tabs.Tab id="tab1" title="광고 관리">
-          {/* {missionView} */}
+          {/* {missionData()} */}
 
           <table className="table table-hover">
             <thead>
@@ -71,15 +157,7 @@ export default function Board(props) {
                 <th scope="col">광고마감일</th>
               </tr>
               {/* data handling */}
-              <tr>
-                <th scope="col">11111111</th>
-                <th scope="col">22222222</th>
-                <th scope="col">33333333</th>
-                <th scope="col">44444444</th>
-                <th scope="col">55555555</th>
-                <th scope="col">66666666</th>
-                <th scope="col">77777777</th>
-              </tr>
+              {missionView()}
             </thead>
           </table>
         </Tabs.Tab>

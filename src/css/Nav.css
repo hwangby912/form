@@ -1,0 +1,4 @@
+.container > img {
+  display: flex;
+  justify-content: center;
+}

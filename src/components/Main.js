@@ -2,7 +2,6 @@ import React, { createRef, useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Parallax, ParallaxLayer } from "react-spring/renderprops-addons.cjs";
 import "../css/Main.css";
-import stamp from "../css/img/stamp.png";
 import ad from "../css/img/ad.png";
 import walk from "../css/img/walk.png";
 
