@@ -17,7 +17,6 @@ export default function Login({
   myStorage
 }) {
   const [loginState, setLoginState] = useState("init");
-  // const [ticket, setTicket] = useState(0)
   const handleSubmit = async e => {
     e.preventDefault();
     const { data } = await axios.post(`${baseURL}/stamp/login`, {
@@ -50,11 +49,8 @@ export default function Login({
   return (
     <>
       {loginState === "success" ? (
-        // error code
         <Redirect to={{ pathname: "/home" }} />
-      ) : // <Redirect to={{ pathname: "/home", state: { id: data.id } }} />
-      // <Redirect to="/home" />
-      null}
+      ) : null}
       <form onSubmit={handleSubmit}>
         <small>
           {loginState === "failed" && "이메일 혹은 비밀번호를 확인하세요"}
@@ -66,7 +62,6 @@ export default function Login({
             className="form-control"
             id="id"
             name="id"
-            // aria-describedby="emailHelp"
             placeholder="Enter ID"
           />
         </div>

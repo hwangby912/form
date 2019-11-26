@@ -36,37 +36,9 @@ export default function Nav({
           id="mainNav"
         >
           <div className="container">
-            {/* <button
-          className="navbar-toggler navbar-toggler-right"
-          type="button"
-          onClick={() => {
-            setIsCollapsed(!isCollapsed);
-            setIsMenuOpened(!isMenuOpened);
-          }}
-        >
-          Menu
-          <i className="fas fa-bars" />
-        </button> */}
-            {/* <div
-          className={`collapse navbar-collapse ${!isCollapsed && "show"}`}
-          id="navbarResponsive"
-        > */}
             <ul className="navbar-nav ml-auto">
-              {/* <li
-              className="nav-item"
-              onClick={() => {
-                if (isMenuOpened) {
-                  setIsCollapsed(!isCollapsed);
-                  setIsMenuOpened(!isMenuOpened);
-                }
-              }}
-            > */}
               {isLoggedIn ? (
-                <Link
-                  className="nav-link"
-                  to="/home"
-                  // onClick={setPasswordSame(false)}
-                >
+                <Link className="nav-link" to="/home">
                   Home
                 </Link>
               ) : (
@@ -74,19 +46,6 @@ export default function Nav({
                   Main
                 </Link>
               )}
-              {/* <Link className="nav-link" to="/">
-                Home
-              </Link> */}
-              {/* </li> */}
-              {/* <li
-              className="nav-item"
-              onClick={() => {
-                if (isMenuOpened) {
-                  setIsCollapsed(!isCollapsed);
-                  setIsMenuOpened(!isMenuOpened);
-                }
-              }}
-            > */}
               {isLoggedIn ? (
                 <Link className="nav-link" onClick={logout} to="/">
                   Log Out
@@ -96,24 +55,7 @@ export default function Nav({
                   Log In
                 </Link>
               )}
-              {/* </li> */}
-              {/* {isAdmin && (
-              <li
-                className="nav-item"
-                onClick={() => {
-                  if (isMenuOpened) {
-                    setIsCollapsed(!isCollapsed);
-                    setIsMenuOpened(!isMenuOpened);
-                  }
-                }}
-              >
-                <Link className="nav-link" to="/write">
-                  Write
-                </Link>
-              </li>
-            )} */}
             </ul>
-            {/* </div> */}
           </div>
         </nav>
       )}

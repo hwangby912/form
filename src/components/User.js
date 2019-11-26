@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import authAxios from "../common/authAxios";
-// import { Home, Auth } from "pages";
-// import HeaderContainer from "containers/Base/HeaderContainer";
-
-// import storage from "lib/storage";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import * as userActions from "redux/modules/user";
 
 import { baseURL } from "../common/config";
 import "../css/User.css";
@@ -150,42 +143,7 @@ export default function User({
             Submit
           </button>
         </div>
-        // <div className="form-group">
-        //   <ul className="user-page">
-        //     <h1>
-        //       <li>Password Check</li>
-        //     </h1>
-        //     <form onSubmit={handleSubmit}>
-        //       <input
-        //         type="password"
-        //         name="password"
-        //         className="form-control"
-        //         placeholder="Enter Password"
-        //       />
-        //       <div>
-        //         <button type="submit" className="btn btn-primary">
-        //           Submit
-        //         </button>
-        //       </div>
-        //     </form>
-        //   </ul>
-        // </div>
       )}
-      {/* <div>
-         <ul className="user-page">
-           <h1>
-             <li>Password Check</li>
-           </h1>
-           <form onSubmit={handleSubmit}>
-             <input type="password" name="password" />
-             <div>
-               <button type="submit" className="btn btn-primary">
-                 Submit
-               </button>
-             </div>
-           </form>
-         </ul>
-       </div> */}
     </>
   );
 }

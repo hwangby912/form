@@ -181,10 +181,10 @@ export default function Board(props) {
             <div className="form-group">
               <label htmlFor="startDate">Start Date</label>
               <input
-                type="datetime-local"
+                type="datetime"
                 className="start-date datepicker form-control"
-                placeholder="Enter Start Date"
                 id="startDate"
+                min={new Date()}
                 value={startDate}
                 onChange={e => {
                   setStartDate(e.target.value);
@@ -194,9 +194,10 @@ export default function Board(props) {
             <div className="form-group">
               <label htmlFor="endDate">End Date</label>
               <input
-                type="datetime-local"
+                type="date"
                 className="end-date datepicker form-control"
                 placeholder="Enter End Date"
+                min={new Date()}
                 id="endDate"
                 value={endDate}
                 onChange={e => {
