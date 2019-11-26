@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { baseURL } from "../common/config";
+// import { Home, Auth } from "pages";
+// import HeaderContainer from "containers/Base/HeaderContainer";
 
+// import storage from "lib/storage";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import * as userActions from "redux/modules/user";
+
+import { baseURL } from "../common/config";
 import "../css/User.css";
+
 export default function User({
   id,
   passwordSame,
@@ -69,7 +77,6 @@ export default function User({
                 setNewPassword(e.target.value);
               }}
             />
-            <small>비밀번호는 숫자, 특수문자, 영어대소문자 하나씩!!</small>
           </div>
           <div className="form-group">
             <label>company_name</label>

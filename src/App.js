@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+// import getCookie from "./common/getCookie";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 import Nav from "./components/Nav";
@@ -49,6 +50,16 @@ function App() {
     passwordSame,
     setPasswordSame
   };
+  // useEffect(() => {
+  //   setIsLoggedIn(document.cookie.includes("Authorization"));
+  //   // Header Payload Signature
+  //   if (document.cookie.includes("Authorization")) {
+  //     const jwt = getCookie("Authorization").split(" ")[1];
+  //     const payload = jwt.split(".")[1];
+  //     const { admin } = JSON.parse(atob(payload));
+  //     setIsAdmin(admin);
+  //   }
+  // }, []);
   return (
     <BrowserRouter>
       <div className="App">

@@ -16,16 +16,16 @@ export default function Nav({
     setIsAdmin(false);
     setPasswordSame(false);
   };
-  // useEffect(() => {
-  //   setIsLoggedIn(document.cookie.includes("Authorization"));
-  //   // Header Payload Signature
-  //   if (document.cookie.includes("Authorization")) {
-  //     const jwt = getCookie("Authorization").split(" ")[1];
-  //     const payload = jwt.split(".")[1];
-  //     const { admin } = JSON.parse(atob(payload));
-  //     setIsAdmin(admin);
-  //   }
-  // }, []);
+  useEffect(() => {
+    setIsLoggedIn(document.cookie.includes("Authorization"));
+    // Header Payload Signature
+    if (document.cookie.includes("Authorization")) {
+      const jwt = getCookie("Authorization").split(" ")[1];
+      const payload = jwt.split(".")[1];
+      const { admin } = JSON.parse(atob(payload));
+      setIsAdmin(admin);
+    }
+  }, []);
   return (
     <>
       {!setIsLoggedIn ? null : (
