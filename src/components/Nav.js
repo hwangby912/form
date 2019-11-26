@@ -7,7 +7,8 @@ export default function Nav({
   isLoggedIn,
   setIsLoggedIn,
   setIsAdmin,
-  setPasswordSame
+  setPasswordSame,
+  myStorage
 }) {
   const logout = () => {
     document.cookie = `Authorization=;expires=${new Date().toUTCString()}`;
@@ -15,6 +16,7 @@ export default function Nav({
     setIsLoggedIn(false);
     setIsAdmin(false);
     setPasswordSame(false);
+    myStorage.clear();
   };
   useEffect(() => {
     setIsLoggedIn(document.cookie.includes("Authorization"));

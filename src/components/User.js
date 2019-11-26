@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import authAxios from "../common/authAxios";
 // import { Home, Auth } from "pages";
 // import HeaderContainer from "containers/Base/HeaderContainer";
 
@@ -29,7 +30,7 @@ export default function User({
   const [modified, setModified] = useState(false);
 
   const handleSubmit = async e => {
-    const { data } = await axios.post(`${baseURL}/stamp/user`, {
+    const { data } = await authAxios().post(`${baseURL}/stamp/user`, {
       password: newPassword,
       company_name,
       company_location,

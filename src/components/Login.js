@@ -31,6 +31,8 @@ export default function Login({
     setCompany_location(data.company_location);
     setPhonenumber(data.phonenumber);
     setTicket(data.ticket);
+    myStorage.setItem("id", data.id);
+    myStorage.setItem("ticket", data.ticket);
     console.log(data);
     if (!data.result) {
       setLoginState("failed");
@@ -43,8 +45,6 @@ export default function Login({
       setIsAdmin(data.admin);
       setIsLoggedIn(true);
       setLoginState("success");
-      myStorage.setItem("id", data.id);
-      myStorage.setItem("ticket", data.ticket);
     }
   };
   return (
