@@ -124,7 +124,7 @@ export default function Board(props) {
           </table>
         </Tabs.Tab>
         <Tabs.Tab id="tab2" title="광고 등록">
-          {/* {advertiseRegister && <Redirect to="/board" />} */}
+          {advertiseRegister && <Redirect to="/home" />}
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="title">Title</label>
